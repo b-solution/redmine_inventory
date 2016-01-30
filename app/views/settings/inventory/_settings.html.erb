@@ -1,0 +1,11 @@
+<%= form_tag({:action => 'edit', :tab => 'inventory'}, :onsubmit => "$('#tab-content-inventory').find('select:last').attr('id', 'selected_columns_crm');selectAllOptions('selected_columns_crm');") do %>
+
+    <fieldset class="box">
+      <legend><%= l(:setting_issue_list_default_columns) %></legend>
+      <%= render_query_columns_selection(
+              InventoryQuery.new(:column_names => Setting.plugin_redmine_crm),
+              :name => 'settings[plugin_redmine_crm]') %>
+    </fieldset>
+
+    <%= submit_tag l(:button_save) %>
+<% end %>

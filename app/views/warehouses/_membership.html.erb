@@ -1,0 +1,20 @@
+<% @warehouses_users = WarehouseUser.where(user_id:  @user.id) %>
+<% new_wu = WarehouseUser.new(user_id:  @user.id) %>
+<% warehouses = Warehouse.order("name ASC").all %>
+<div class="splitcontentleft" id="warehouses">
+ <%= render(partial: 'warehouses/permission_list', locals: {warehouses_users: @warehouses_users}) %>
+</div>
+<div class="splitcontentright">
+  <% if warehouses.any? %>
+      <fieldset><legend><%=l(:label_project_new)%></legend>
+        <%= form_for(new_wu, :method=> :post, :url => manage_roles_warehouses_path ) do |f| %>
+            <%= f.hidden_field :user_id %>
+            <%= f.select :warehouse_id, options_for_select(warehouses.map{|w| [w.name, w.id]}) %>
+            <p><%= f.check_box :can_view %> Can View</p>
+            <p><%= f.check_box :can_manage %> Can manage</p>
+            <p><%= submit_tag l(:button_add) %></p>
+        <% end %>
+      </fieldset>
+  <% end %>
+</div>
+

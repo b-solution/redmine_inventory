@@ -1,0 +1,13 @@
+# English strings go here for Rails i18n
+en:
+  label_inventory_plural: "Inventories"
+  label_inventory_single: "Inventory"
+  label_warehouse_plural: "Warehouses"
+  label_warehouse_single: "Warehouse"
+  field_warehouse: "Warehouse"
+  field_date_in: "Date in"
+  field_date_out: "Date out"
+  field_part_number: "Part number"
+  field_quantity: "Quantity"
+  field_minimum_quantity: "Minimum quantity"
+  field_location: "Location"

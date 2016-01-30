@@ -1,0 +1,43 @@
+<% if warehouses_users.present? %>
+    <table class="list">
+      <thead>
+      <tr>
+        <th>
+          warehouse
+        </th>
+        <th>
+          can View
+        </th>
+        <th>
+          can manage
+        </th>
+        <th>
+
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% warehouses_users.each do |wu| %>
+          <tr>
+            <td>
+              <%= wu.warehouse %>
+            </td>
+            <td>
+              <%= wu.can_view? %>
+            </td>
+            <td>
+              <%= wu.can_manage? %>
+            </td>
+            <td>
+              <%= link_to image_tag('delete.png'), delete_wu_warehouses_path(warehouse_user_id: wu.id),
+                          :data => {:confirm => l(:text_are_you_sure)},
+                          :method => :post,
+                          :title => l(:button_delete) %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

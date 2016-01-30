@@ -1,0 +1,42 @@
+<h2>WarehousesController#manage_roles</h2>
+<div>
+  <table class="list">
+    <thead>
+    <tr>
+      <th>
+        User
+      </th>
+      <th>
+        warehouse
+      </th>
+      <th>
+        can View
+      </th>
+      <th>
+        can manage
+      </th>
+      <th>
+
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @warehouse_users.each do |wu| %>
+    <tr>
+      <td>
+        <%= wu.user %>
+      </td>
+      <td>
+        <%= wu.user %>
+      </td>
+      <td>
+        <%= wu.user %>
+      </td>
+      <td>
+        <%= wu.user %>
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

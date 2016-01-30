@@ -1,0 +1,38 @@
+<%= labelled_fields_for :inventory, @inventory do |f| %>
+
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <% if @inventory.safe_attribute? 'date_in' %>
+            <p id="date_in_area">
+              <%= f.text_field(:date_in, :size => 10) %>
+              <%= calendar_for('inventory_date_in') %>
+            </p>
+        <% end %>
+
+        <% if @inventory.safe_attribute? 'date_out' %>
+            <p id="date_in_area">
+              <%= f.text_field(:date_out, :size => 10) %>
+              <%= calendar_for('inventory_date_out') %>
+            </p>
+        <% end %>
+
+        <% if @inventory.safe_attribute? 'part_number' %>
+            <p><%= f.text_field :part_number, :size => 4 %> </p>
+        <% end %>
+        <% if @inventory.safe_attribute? 'quantity' %>
+            <p><%= f.number_field :quantity, :size => 4 %> </p>
+        <% end %>
+        <% if @inventory.safe_attribute? 'minimum_quantity' %>
+            <p><%= f.number_field :minimum_quantity, :size => 4 %> </p>
+        <% end %>
+
+      </div>
+    </div>
+
+    <% if @inventory.safe_attribute? 'custom_field_values' %>
+        <%= render :partial => 'form_custom_fields' %>
+    <% end %>
+
+<% end %>
+
+<% include_calendar_headers_tags %>

@@ -1,0 +1,11 @@
+<h2>Edit warehouse</h2>
+
+<div class="box tabular">
+  <div id="all_attributes">
+    <%= form_for @warehouse do |f| %>
+        <%= render :partial => 'form', :locals => {:f => f} %>
+        <%= submit_tag l(:button_update) %>
+    <% end %>
+  </div>
+</div>
+

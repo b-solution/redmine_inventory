@@ -1,0 +1,9 @@
+<div class="contextual">
+  <% if params[:warehouse_id].nil? %>
+      <%= link_to( 'inventories', inventories_path, class: 'icon icon-add') if params[:action] != 'index' %>
+      <%= link_to( 'new inventory', new_inventory_path(@warehouse))  if params[:action] != 'new' %>
+  <% else %>
+      <%= link_to( 'inventories', warehouse_inventories_path(@warehouse), class: 'icon icon-add') if params[:action] != 'index' %>
+      <%= link_to( 'new inventory', new_warehouse_inventory_path(@warehouse))  if params[:action] != 'new' %>
+<% end %>
+</div>

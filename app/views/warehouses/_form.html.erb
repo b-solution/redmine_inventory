@@ -1,0 +1,7 @@
+<% if @warehouse.safe_attribute? 'name' %>
+    <p><label>Name:</label> <%= f.text_field :name, :size => 80, :maxlength => 255, :required => true %></p>
+<% end %>
+<% if @warehouse.safe_attribute? 'location' %>
+    <p><label>Location:</label><%= f.text_field :location, :size => 80, :maxlength => 255, :required => true %></p>
+<% end %>
+

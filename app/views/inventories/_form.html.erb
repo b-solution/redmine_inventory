@@ -1,0 +1,35 @@
+<%= labelled_fields_for :inventory, @inventory do |f| %>
+
+    <% if @inventory.safe_attribute? 'warehouse_id' %>
+        <p><%= f.select :warehouse_id,
+                        options_for_select(Warehouse.visible.map{|w| [w.name, w.id]},
+                                           :selected => @inventory.warehouse_id),
+                        {:required => true}
+        %></p>
+    <% end %>
+
+    <% if @inventory.safe_attribute? 'name' %>
+        <p><%= f.text_field :name, :size => 80, :maxlength => 255, :required => true %></p>
+    <% end %>
+
+    <% if @inventory.safe_attribute? 'description' %>
+        <p>
+          <%= f.label_for_field :description %>
+          <%= link_to_function image_tag('edit.png'), '$(this).hide(); $("#issue_description_and_toolbar").show()' unless @inventory.new_record? %>
+          <%= content_tag 'span', :id => "issue_description_and_toolbar", :style => (@inventory.new_record? ? nil : 'display:none') do %>
+              <%= f.text_area :description,
+                              :cols => 60,
+                              :rows => (@inventory.description.blank? ? 10 : [[10, @inventory.description.length / 50].max, 100].min),
+                              :accesskey => accesskey(:edit),
+                              :class => 'wiki-edit',
+                              :no_label => true %>
+          <% end %>
+        </p>
+    <% end %>
+
+    <div id="attributes" class="attributes">
+      <%= render :partial => 'attributes' %>
+    </div>
+
+<% end %>
+

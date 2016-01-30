@@ -1,0 +1,50 @@
+
+<%= render partial: 'action_menu' %>
+
+<h2>Warehouses</h2>
+<% if @warehouses.present? %>
+    <table class="list">
+      <thead>
+      <tr>
+        <th >
+          #
+        </th>
+        <th >
+          name
+        </th>
+        <th >
+          localisation
+        </th>
+        <th >
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @warehouses.each do |warehouse| %>
+          <tr>
+            <td>
+              <%= link_to warehouse.id, warehouse_path(warehouse) %>
+            </td>
+            <td>
+              <%= warehouse.name %>
+            </td>
+            <td>
+              <%= warehouse.location %>
+            </td>
+            <td>
+              <% if warehouse.editable_by?(User.current) %>
+                  <%= link_to image_tag('edit.png'), edit_warehouse_path(warehouse),
+                              :title => l(:button_edit) %>
+                  <%= link_to image_tag('delete.png'), warehouse_path(warehouse),
+                              :data => {:confirm => l(:text_are_you_sure)},
+                              :method => :delete,
+                              :title => l(:button_delete) %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
