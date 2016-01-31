@@ -1,6 +1,6 @@
 require_dependency 'users_helper'
 
-module  RedmineCrm
+module  RedmineInventory
   module UsersHelperPatch
     def self.included(base)
       base.extend(ClassMethods)

@@ -1,0 +1,11 @@
+<%= render partial: 'action_menu' %>
+<h2>Move Inventory</h2>
+<div class="box tabular">
+  <div id="all_attributes">
+    <%= form_for @inventory, url: move_inventory_path(@inventory), method: :post do |f| %>
+        <%= render :partial => 'form_move', :locals => {:f => f} %>
+        <%= submit_tag l(:button_move) %>
+    <% end %>
+  </div>
+</div>
+

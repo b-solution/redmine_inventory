@@ -8,4 +8,9 @@ resources :warehouses do
   end
   resources :inventories
 end
-resources :inventories
+resources :inventories do
+  member do
+    get 'move'
+    post 'move'
+  end
+end

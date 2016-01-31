@@ -6,7 +6,7 @@ class CreateInventories < ActiveRecord::Migration
 
       t.string :name
 
-      t.string :description
+      t.text :description
 
       t.integer :part_number
       t.integer :activity_id

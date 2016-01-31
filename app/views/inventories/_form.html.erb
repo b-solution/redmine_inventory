@@ -1,11 +1,12 @@
 <%= labelled_fields_for :inventory, @inventory do |f| %>
-
-    <% if @inventory.safe_attribute? 'warehouse_id' %>
+    <%= error_messages_for 'inventory' %>
+    <% if @inventory.safe_attribute? 'warehouse_id' and @inventory.new_record? %>
         <p><%= f.select :warehouse_id,
                         options_for_select(Warehouse.visible.map{|w| [w.name, w.id]},
                                            :selected => @inventory.warehouse_id),
                         {:required => true}
-        %></p>
+        %>
+        </p>
     <% end %>
 
     <% if @inventory.safe_attribute? 'name' %>

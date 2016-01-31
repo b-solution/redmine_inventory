@@ -1,0 +1,20 @@
+<%= labelled_fields_for :inventory, @inventory do |f| %>
+    <%= error_messages_for 'inventory' %>
+    <% if @inventory.safe_attribute? 'warehouse_id' %>
+        <p><%= f.select :warehouse_id,
+                        options_for_select(Warehouse.visible.map{|w| [w.name, w.id]},
+                                           :selected => @inventory.warehouse_id),
+                        {:required => true}
+        %>
+        </p>
+    <% end %>
+
+    <% if  @inventory.safe_attribute? 'status' %>
+        <p><%= f.text_field :status, :size => 12, :required => true %> </p>
+    <% end %>
+
+    <% if  @inventory.safe_attribute? 'reason' %>
+        <p><%= f.text_field :reason, :size => 12, :required => true %> </p>
+    <% end %>
+
+<% end %>

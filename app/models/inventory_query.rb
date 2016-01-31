@@ -3,13 +3,13 @@ class InventoryQuery < Query
   self.queried_class = Inventory
 
   self.available_columns = [
-      QueryColumn.new(:warehouse, :sortable => "#{Warehouse.table_name}.name", :groupable => true),
-      QueryColumn.new(:location, :sortable => "#{Warehouse.table_name}.location"),
-      QueryColumn.new(:type, :sortable => "#{Inventory.table_name}.type"),
-      QueryColumn.new(:name, :sortable => "#{Inventory.table_name}.name"),
-      QueryColumn.new(:part_number, :sortable => "#{Inventory.table_name}.part_number"),
-      QueryColumn.new(:date_in, :sortable => "#{Inventory.table_name}.date_in"),
-      QueryColumn.new(:date_out, :sortable => "#{Inventory.table_name}.date_out"),
+      QueryColumn.new(:warehouse, :sortable => "#{Warehouse.table_name}.name",:groupable => true),
+      QueryColumn.new(:location, :sortable => "#{Warehouse.table_name}.location",:groupable => true),
+      QueryColumn.new(:type, :sortable => "#{Inventory.table_name}.type",:groupable => true),
+      QueryColumn.new(:name, :sortable => "#{Inventory.table_name}.name",:groupable => true),
+      QueryColumn.new(:part_number, :sortable => "#{Inventory.table_name}.part_number",:groupable => true),
+      QueryColumn.new(:date_in, :sortable => "#{Inventory.table_name}.date_in",:groupable => true),
+      QueryColumn.new(:date_out, :sortable => "#{Inventory.table_name}.date_out",:groupable => true),
       QueryColumn.new(:quantity, :sortable => "#{Inventory.table_name}.quantity"),
       QueryColumn.new(:minimum_quantity, :sortable => "#{Inventory.table_name}.minimum_quantity"),
   ]
@@ -40,15 +40,15 @@ class InventoryQuery < Query
   end
 
   def default_columns_names
-    @default_columns_names ||= [:name, :date_in, :date_out, :quantity, :warehouse]
+    @default_columns_names ||= Setting.plugin_redmine_inventory.map(&:to_sym)
   end
 
   def results_scope(options={})
     order_option = [group_by_sort_order, options[:order]].flatten.reject(&:blank?)
 
-    Inventory.
+    Inventory.visible.
         where(statement).
-        order(order_option).
+        order(order_option).includes(:warehouse).
         joins(joins_for_order_statement(order_option.join(',')))
   end
 

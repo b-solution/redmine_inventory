@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with redmine_contacts.  If not, see <http://www.gnu.org/licenses/>.
 
-module RedmineCrm
+module RedmineInventory
     module SettingsHelperPatch
       def self.included(base)
         base.send(:include, InstanceMethods)

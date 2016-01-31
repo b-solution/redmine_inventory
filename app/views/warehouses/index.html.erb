@@ -23,7 +23,7 @@
       <% @warehouses.each do |warehouse| %>
           <tr>
             <td>
-              <%= link_to warehouse.id, warehouse_path(warehouse) %>
+              <%= link_to warehouse.id, warehouse_inventories_path(warehouse) %>
             </td>
             <td>
               <%= warehouse.name %>

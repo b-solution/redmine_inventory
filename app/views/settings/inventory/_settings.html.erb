@@ -2,9 +2,13 @@
 
     <fieldset class="box">
       <legend><%= l(:setting_issue_list_default_columns) %></legend>
+      <% columns =  Setting.plugin_redmine_inventory
+
+      %>
+
       <%= render_query_columns_selection(
-              InventoryQuery.new(:column_names => Setting.plugin_redmine_crm),
-              :name => 'settings[plugin_redmine_crm]') %>
+              InventoryQuery.new(:column_names => columns),
+              :name => 'settings[plugin_redmine_inventory]') %>
     </fieldset>
 
     <%= submit_tag l(:button_save) %>

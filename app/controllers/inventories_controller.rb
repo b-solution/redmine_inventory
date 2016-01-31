@@ -3,7 +3,7 @@ class InventoriesController < ApplicationController
 
   before_filter :get_warehouse
   before_filter :authorize_manage
-  before_filter :get_inventory, only: [:edit, :update, :destroy, :show]
+  before_filter :get_inventory, only: [:edit, :update, :destroy, :show, :move]
 
   helper :custom_fields
   include CustomFieldsHelper
@@ -72,6 +72,16 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def move
+    if request.post?
+      @inventory.safe_attributes = params[:inventory]
+      if @inventory.save
+        redirect_to warehouse_inventories_path(@inventory.warehouse)
+      else
+        render :move
+      end
+    end
+  end
 
   def show
   end
@@ -91,7 +101,7 @@ class InventoriesController < ApplicationController
 
   def destroy
     @inventory.destroy
-    redirect_to warehouse_inventories_path(@warehouse)
+    redirect_to inventories_path
   end
 
   private

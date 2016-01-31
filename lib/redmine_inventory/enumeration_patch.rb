@@ -1,6 +1,6 @@
 require_dependency 'enumeration'
 
-module  RedmineCrm
+module  RedmineInventory
   module EnumerationPatch
     def self.included(base)
       base.extend(ClassMethods)

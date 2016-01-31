@@ -11,3 +11,5 @@ en:
   field_quantity: "Quantity"
   field_minimum_quantity: "Minimum quantity"
   field_location: "Location"
+  field_status: "Status"
+  field_reason: "Reason"
