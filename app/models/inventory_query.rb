@@ -36,6 +36,7 @@ class InventoryQuery < Query
   def available_columns
     return @available_columns if @available_columns
     @available_columns = self.class.available_columns.dup
+    # @available_columns += CustomField.where(:type => 'InventoryCustomField').all.map {|cf| QueryCustomFieldColumn.new(cf) }
     @available_columns
   end
 
