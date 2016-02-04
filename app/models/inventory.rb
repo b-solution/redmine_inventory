@@ -4,12 +4,15 @@ class Inventory < ActiveRecord::Base
   include Redmine::SafeAttributes
 
   belongs_to :warehouse
+  belongs_to :activity, :class_name => 'InventoryActivity', :foreign_key => 'activity_id'
+
   acts_as_customizable
   validates_presence_of :name, :warehouse_id
   validates_presence_of :status, :reason, :if => :check_moves
   safe_attributes 'type' , 'name' , 'description' ,
                   'part_number', 'date_in' , 'date_out' ,
-                  'quantity', 'minimum_quantity', 'warehouse_id',
+                  'quantity', 'minimum_quantity',
+                  'warehouse_id', 'activity_id',
                   'custom_field_values',
                   'custom_fields', 'status', 'reason'
 

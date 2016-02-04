@@ -2,6 +2,11 @@
 
     <div class="splitcontent">
       <div class="splitcontentleft">
+        <% if @inventory.safe_attribute? 'activity_id' %>
+            <p id="date_in_area">
+              <%= f.select(:activity_id, options_for_select(InventoryActivity.all.map{|ia| [ia.name, ia.id] }, @inventory.activity_id ) ) %>
+            </p>
+        <% end %>
         <% if @inventory.safe_attribute? 'date_in' %>
             <p id="date_in_area">
               <%= f.text_field(:date_in, :size => 10) %>
@@ -16,6 +21,8 @@
             </p>
         <% end %>
 
+      </div>
+      <div class="splitcontentright">
         <% if @inventory.safe_attribute? 'part_number' %>
             <p><%= f.text_field :part_number, :size => 4 %> </p>
         <% end %>
@@ -25,7 +32,6 @@
         <% if @inventory.safe_attribute? 'minimum_quantity' %>
             <p><%= f.number_field :minimum_quantity, :size => 4 %> </p>
         <% end %>
-
       </div>
     </div>
 

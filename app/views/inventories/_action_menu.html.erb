@@ -1,13 +1,21 @@
 <div class="contextual">
   <% if params[:warehouse_id].nil? %>
-      <%= link_to( 'inventories', inventories_path, class: 'icon icon-add') if params[:action] != 'index' %> |
-      <%= link_to( 'new inventory', new_inventory_path(@warehouse))  if params[:action] != 'new' %>
+      <% if params[:action] != 'index'%>
+          <%= link_to( 'inventories', inventories_path)  %> |
+      <% end %>
+      <% if params[:action] != 'new'%>
+          <%= link_to( 'new inventory', new_inventory_path(@warehouse) , class: 'icon icon-add')  %> |
+      <% end %>
   <% else %>
-      <%= link_to( 'inventories', warehouse_inventories_path(@warehouse), class: 'icon icon-add') if params[:action] != 'index' %> |
-      <%= link_to( 'new inventory', new_warehouse_inventory_path(@warehouse))  if params[:action] != 'new' %>
+      <% if params[:action] != 'index'%>
+          <%= link_to( 'inventories', warehouse_inventories_path(@warehouse))  %> |
+      <% end %>
+      <% if params[:action] != 'new'%>
+          <%= link_to( 'new inventory', new_warehouse_inventory_path(@warehouse), class: 'icon icon-add')  if params[:action] != 'new' %>
+      <% end %>
   <% end %>
 
   <% if @inventory %>
-      | <%= link_to( 'Move', move_inventory_path(@inventory), class: 'icon icon-move') if params[:action].in? ['show', 'edit'] %>
+      <%= link_to( 'Move', move_inventory_path(@inventory), class: 'icon icon-move') if params[:action].in? ['show', 'edit'] %>
   <% end %>
 </div>

@@ -1,7 +1,7 @@
 class InventoryActivity < Enumeration
   has_many :inventories, :foreign_key => 'activity_id'
 
-  OptionName = :enumeration_activities_inventory
+  OptionName = :enumeration_inventory
 
   def option_name
     OptionName

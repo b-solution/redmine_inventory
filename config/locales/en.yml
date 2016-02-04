@@ -13,3 +13,4 @@ en:
   field_location: "Location"
   field_status: "Status"
   field_reason: "Reason"
+  enumeration_inventory: "Inventory Types"
